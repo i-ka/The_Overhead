@@ -5,6 +5,7 @@ public class StatManager : MonoBehaviour {
 
     public int damage;
     public int health=100;
+    public float attackCoolDown = 1.0f;
 
     public void ApplyDamage(int damage)
     {

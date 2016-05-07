@@ -10,8 +10,9 @@ public class CharacterMoveController : MonoBehaviour {
     private Rigidbody2D m_rb;
     private Animator m_anim;
     private bool attacking = false;
-    private float attackTimer=0;
+    private float attackTimer = 0;
     private float attackTime = 0.1f;
+    [HideInInspector]
     public StatManager m_stats;
     private Transform m_atkTrigger;
 
@@ -28,6 +29,7 @@ public class CharacterMoveController : MonoBehaviour {
 	void Start () {
         m_stats = GetComponent<StatManager>();
         m_atkTrigger = transform.FindChild("AttackTrigger");
+        print(m_atkTrigger);
         m_atkTrigger.gameObject.SetActive(false);
         m_rb = GetComponent<Rigidbody2D>();
         m_anim = GetComponent<Animator>();
@@ -36,16 +38,14 @@ public class CharacterMoveController : MonoBehaviour {
 
     public void Attack(bool atk)
     {
-        if(!attacking && atk)
-        {
+        if (!attacking && atk && attackTimer >= m_stats.attackCoolDown) {
             attacking = true;
-            attackTimer = attackTime;
-        }else if (attacking && attackTimer > 0)
-        {
-            attackTimer -= Time.deltaTime;
-        }else if (attackTimer <= 0)
-        {
+            attackTimer = 0;
+        } else if (attacking && attackTimer >= attackTime) {
             attacking = false;
+        }
+        if (attackTimer <= m_stats.attackCoolDown) {
+            attackTimer += Time.deltaTime;
         }
         m_anim.SetBool("Attack",attacking);
         m_atkTrigger.gameObject.SetActive(attacking);

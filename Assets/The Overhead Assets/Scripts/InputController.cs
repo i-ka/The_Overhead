@@ -21,6 +21,6 @@ public class InputController : MonoBehaviour {
         {
             jump = Input.GetButtonDown("Jump");
         }
-        player.Attack(Input.GetButtonDown("Fire1"));
+        player.Attack(Input.GetButton("Fire1"));
 	}
 }

@@ -357,6 +357,14 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: -0.266
       objectReference: {fileID: 0}
+    - target: {fileID: 11477172, guid: c2200a6faa002bf4b9dc9f0555fbfa09, type: 2}
+      propertyPath: attackCoolDown
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 493576, guid: c2200a6faa002bf4b9dc9f0555fbfa09, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.24
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c2200a6faa002bf4b9dc9f0555fbfa09, type: 2}
   m_IsPrefabParent: 0
