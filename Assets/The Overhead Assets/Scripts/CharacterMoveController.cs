@@ -5,7 +5,7 @@ public class CharacterMoveController : MonoBehaviour {
 
     private bool facingRight=true;
     private bool grounded;
-    private float k_grounded_radius = 0.4f;
+    private float k_grounded_radius = 0.1f;
     private Transform m_ground_check;
     private Rigidbody2D m_rb;
     private Animator m_anim;
