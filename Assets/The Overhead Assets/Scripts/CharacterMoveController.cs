@@ -29,7 +29,6 @@ public class CharacterMoveController : MonoBehaviour {
 	void Start () {
         m_stats = GetComponent<StatManager>();
         m_atkTrigger = transform.FindChild("AttackTrigger");
-        print(m_atkTrigger);
         m_atkTrigger.gameObject.SetActive(false);
         m_rb = GetComponent<Rigidbody2D>();
         m_anim = GetComponent<Animator>();
