@@ -3,6 +3,10 @@
 public class GameOverScript : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D other)
     {
-        GameManager.instance.RestartLevel();
+        if (other.CompareTag("Player")) {
+            GameManager.instance.RestartLevel();
+        } else {
+            Destroy(other);
+        }
     }
 }
