@@ -11,3 +11,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level.unity
   - enabled: 0
     path: Assets/scene1.unity
+  - enabled: 1
+    path: Assets/The Overhead Assets/Scenes/menu.unity
+  - enabled: 1
+    path: Assets/The Overhead Assets/Scenes/scene1.unity
