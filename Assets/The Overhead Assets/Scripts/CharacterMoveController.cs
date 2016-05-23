@@ -22,7 +22,7 @@ public class CharacterMoveController : MonoBehaviour {
     [SerializeField]
     private float jumpPower;
     [SerializeField]
-    private LayerMask ground;
+    public LayerMask ground;
     public string m_enemyTag="Enemy";
 
 
