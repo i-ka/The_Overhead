@@ -12,18 +12,18 @@ public class CharacterMoveController : MonoBehaviour {
     private bool attacking = false;
     private float attackTimer = 0;
     private float attackTime = 0.1f;
-    [HideInInspector]
-    public StatManager stats;
     private Transform m_atkTrigger;
-
-
     [SerializeField]
     private float maxSpeed;
     [SerializeField]
     private float jumpPower;
+    [SerializeField]
+    private Transform damageEffect;
+
+    [HideInInspector]
+    public StatManager stats;
     public LayerMask ground;
     public string m_enemyTag="Enemy";
-
 
 	void Start () {
         stats = GetComponent<StatManager>();
@@ -90,5 +90,10 @@ public class CharacterMoveController : MonoBehaviour {
         if (!stats.isAlive && !gameObject.CompareTag("Player")) {
             Destroy(gameObject);
         }
+    }
+
+    public void ApplyDamage(int damage)
+    {
+        stats.takeDamage(damage);
     }
 }

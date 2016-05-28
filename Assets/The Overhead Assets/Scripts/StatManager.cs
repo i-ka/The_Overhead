@@ -9,7 +9,7 @@ public class StatManager : MonoBehaviour {
     [HideInInspector]
     public bool isAlive = true;
 
-    public void ApplyDamage(int damage)
+    public void takeDamage(int damage)
     {
         health -= damage;
         if (health <= 0) {
