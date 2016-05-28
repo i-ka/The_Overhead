@@ -6,7 +6,7 @@ public class GameOverScript : MonoBehaviour {
         if (other.CompareTag("Player")) {
             other.GetComponent<CharacterMoveController>().stats.isAlive = false;
         } else {
-            Destroy(other);
+            Destroy(other.gameObject);
         }
     }
 }
