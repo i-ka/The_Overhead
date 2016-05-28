@@ -36,8 +36,8 @@ public class MeleeAIController : MonoBehaviour
 
             float sqrLen = distance.sqrMagnitude;
             isActivated = sqrLen <= 1000;
-            isGoing = sqrLen <= 50;
-            isAttack = sqrLen <= 20;
+            isGoing = sqrLen <= 100;
+            isAttack = sqrLen <= 17;
             yield return new WaitForSeconds(0.3f);
         }
     }
@@ -45,12 +45,12 @@ public class MeleeAIController : MonoBehaviour
     void Patrol()
     {
 
-        if (!rHavePlatform)
+        if (!rHavePlatform || !lHavePlatform)
         {
             direction *= -1;
-        } else if (!lHavePlatform)
+        } else if (!rHavePlatform && !lHavePlatform)
         {
-            direction *= -1;
+            direction = 0;
         }
         moveController.Move(direction, false);
     }
