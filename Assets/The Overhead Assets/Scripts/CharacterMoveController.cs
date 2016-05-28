@@ -13,7 +13,7 @@ public class CharacterMoveController : MonoBehaviour {
     private float attackTimer = 0;
     private float attackTime = 0.1f;
     [HideInInspector]
-    public StatManager m_stats;
+    public StatManager stats;
     private Transform m_atkTrigger;
 
 
@@ -21,13 +21,12 @@ public class CharacterMoveController : MonoBehaviour {
     private float maxSpeed;
     [SerializeField]
     private float jumpPower;
-    [SerializeField]
     public LayerMask ground;
     public string m_enemyTag="Enemy";
 
 
 	void Start () {
-        m_stats = GetComponent<StatManager>();
+        stats = GetComponent<StatManager>();
         m_atkTrigger = transform.FindChild("AttackTrigger");
         m_atkTrigger.gameObject.SetActive(false);
         m_rb = GetComponent<Rigidbody2D>();
@@ -37,13 +36,13 @@ public class CharacterMoveController : MonoBehaviour {
 
     public void Attack(bool atk)
     {
-        if (!attacking && atk && attackTimer >= m_stats.attackCoolDown) {
+        if (!attacking && atk && attackTimer >= stats.attackCoolDown) {
             attacking = true;
             attackTimer = 0;
         } else if (attacking && attackTimer >= attackTime) {
             attacking = false;
         }
-        if (attackTimer <= m_stats.attackCoolDown) {
+        if (attackTimer <= stats.attackCoolDown) {
             attackTimer += Time.deltaTime;
         }
         m_anim.SetBool("Attack",attacking);
@@ -88,8 +87,7 @@ public class CharacterMoveController : MonoBehaviour {
     }
     void Update()
     {
-        if (m_stats.health <= 0)
-        {
+        if (!stats.isAlive && !gameObject.CompareTag("Player")) {
             Destroy(gameObject);
         }
     }

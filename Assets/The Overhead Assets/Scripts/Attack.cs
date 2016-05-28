@@ -12,8 +12,7 @@ public class Attack : MonoBehaviour {
     {
         if (other.CompareTag(m_platformerMove.m_enemyTag))
         {
-            print("some");
-            other.SendMessageUpwards("ApplyDamage", m_platformerMove.m_stats.damage);
+            other.SendMessageUpwards("ApplyDamage", m_platformerMove.stats.damage);
         }
     }
 }

@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
-    private int gr;
+    private GameObject player;
+    private CharacterMoveController playerController;
+    private Transform deadMenu;
+
 
     void Awake()
     {
@@ -16,6 +19,26 @@ public class GameManager : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
     }
+    void Start()
+    {
+        deadMenu = transform.FindChild("DeadMenu");
+    }
+
+    public void Setup(GameObject player)
+    {
+        this.player = player;
+        playerController = player.GetComponent<CharacterMoveController>();
+    }
+
+    void Update()
+    {
+        if (playerController != null) {
+            if (!playerController.stats.isAlive) {
+                Time.timeScale = 0;
+                deadMenu.gameObject.SetActive(true);
+            }
+        }
+    }
 
     public void StartGame()
     {
@@ -25,7 +48,6 @@ public class GameManager : MonoBehaviour {
     {
         Application.Quit();
     }
-
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
