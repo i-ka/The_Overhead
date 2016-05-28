@@ -33,7 +33,7 @@ GameObject:
   - 95: {fileID: 9570560}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119320956f53d914da76dd3a1237e07e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 50
   health: 100
   attackCoolDown: 1
 --- !u!212 &21242054

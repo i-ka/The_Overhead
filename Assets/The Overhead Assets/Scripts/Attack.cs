@@ -10,7 +10,7 @@ public class Attack : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.isTrigger && other.CompareTag(m_platformerMove.m_enemyTag))
+        if (other.CompareTag(m_platformerMove.m_enemyTag))
         {
             print("some");
             other.SendMessageUpwards("ApplyDamage", m_platformerMove.m_stats.damage);
