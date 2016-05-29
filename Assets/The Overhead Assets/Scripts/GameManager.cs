@@ -37,18 +37,21 @@ public class GameManager : MonoBehaviour {
         this.player = player;
         playerController = player.GetComponent<CharacterMoveController>();
         deadMenu.gameObject.SetActive(false);
+        gamePaused = false;
     }
 
     void Update()
     {
         if (playerController != null) {
             if (!playerController.stats.isAlive) {
-                Time.timeScale = 0;
                 deadMenu.gameObject.SetActive(true);
                 gamePaused = true;
-            } else {
-                Time.timeScale = 1;
             }
+        }
+        if (gamePaused) {
+            Time.timeScale = 0;
+        } else {
+            Time.timeScale = 1;
         }
     }
 
@@ -64,21 +67,19 @@ public class GameManager : MonoBehaviour {
     }
     public void RestartLevel()
     {
-        gamePaused = false;
         deadMenu.gameObject.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gamePaused = false;
     }
     public void PauseGame()
     {
         gamePaused = true;
         pauseMenu.gameObject.SetActive(true);
-        Time.timeScale = 0;
     }
     public void ResumeGame()
     {
         gamePaused = false;
         pauseMenu.gameObject.SetActive(false);
-        Time.timeScale = 1;
     }
     public void ToMainMenu()
     {

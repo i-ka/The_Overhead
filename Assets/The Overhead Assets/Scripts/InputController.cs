@@ -26,5 +26,13 @@ public class InputController : MonoBehaviour {
             jump = Input.GetButtonDown("Jump");
         }
         player.Attack(Input.GetButton("Fire1"));
+
+        if (Input.GetButtonDown("Cancel")) {
+            if (GameManager.instance.gamePaused) {
+                GameManager.instance.ResumeGame();
+            } else {
+                GameManager.instance.PauseGame();
+            }
+        }
 	}
 }
