@@ -13,6 +13,8 @@ public class CharacterMoveController : MonoBehaviour {
     private float attackTimer = 0;
     private float attackTime = 0.1f;
     private Transform m_atkTrigger;
+    private AudioSource moveSound;
+    private AudioSource attackSound;
     [SerializeField]
     private float maxSpeed;
     [SerializeField]
@@ -32,13 +34,21 @@ public class CharacterMoveController : MonoBehaviour {
         m_rb = GetComponent<Rigidbody2D>();
         m_anim = GetComponent<Animator>();
         m_ground_check = transform.Find("GroundCheck");
-	}
+		AudioSource[] allSources = GetComponents<AudioSource>();
+        moveSound = allSources[0];
+        attackSound = allSources[1];
+    }
 
     public void Attack(bool atk)
     {
         if (!attacking && atk && attackTimer >= stats.attackCoolDown) {
             attacking = true;
             attackTimer = 0;
+            if (attacking && !attackSound.isPlaying)
+            {
+                attackSound.volume = Random.Range(0.8f, 1);
+                attackSound.Play();
+            }
         } else if (attacking && attackTimer >= attackTime) {
             attacking = false;
         }
@@ -76,6 +86,13 @@ public class CharacterMoveController : MonoBehaviour {
 
         if (axis<0 && facingRight)Flip();
         if (axis > 0 && !facingRight) Flip();
+
+        if (grounded && moveSpeed != 0 && !moveSound.isPlaying)
+        {
+            moveSound.volume = Random.Range(0.8f, 1);
+            moveSound.pitch = Random.Range(0.8f, 1.2f);
+            moveSound.Play();
+        }
     }
 
     void Flip()
