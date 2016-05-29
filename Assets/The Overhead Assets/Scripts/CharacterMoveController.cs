@@ -6,6 +6,7 @@ public class CharacterMoveController : MonoBehaviour {
     private bool facingRight=true;
     private bool grounded;
     private float k_grounded_radius = 0.1f;
+    public GameObject hitDamage;
     private Transform m_ground_check;
     private Rigidbody2D m_rb;
     private Animator m_anim;
@@ -118,7 +119,9 @@ public class CharacterMoveController : MonoBehaviour {
     public void ApplyDamage(int damage)
     {
         stats.takeDamage(damage);
+        Instantiate(hitDamage, transform.position, transform.rotation);
     }
+
     public void pushBack(Vector2 force)
     {
         StartCoroutine("dissableControls");
