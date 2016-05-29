@@ -21,6 +21,7 @@ public class CharacterMoveController : MonoBehaviour {
     private float jumpPower;
     [SerializeField]
     private Transform damageEffect;
+    private bool controlsEnable;
 
     [HideInInspector]
     public StatManager stats;
@@ -37,6 +38,7 @@ public class CharacterMoveController : MonoBehaviour {
 		AudioSource[] allSources = GetComponents<AudioSource>();
         moveSound = allSources[0];
         attackSound = allSources[1];
+        controlsEnable = true;
     }
 
     public void Attack(bool atk)
@@ -75,6 +77,10 @@ public class CharacterMoveController : MonoBehaviour {
 
     public void Move(float axis,bool jump)
     {
+        if (!controlsEnable) {
+            return;
+        }
+        
         float moveSpeed = axis * maxSpeed;
         m_anim.SetFloat("Speed",Mathf.Abs(moveSpeed));
         m_rb.velocity = new Vector2(moveSpeed, m_rb.velocity.y);
@@ -112,5 +118,17 @@ public class CharacterMoveController : MonoBehaviour {
     public void ApplyDamage(int damage)
     {
         stats.takeDamage(damage);
+    }
+    public void pushBack(Vector2 force)
+    {
+        StartCoroutine("dissableControls");
+        m_rb.velocity = new Vector2(0, 0);
+        m_rb.AddForce(force);
+    }
+    IEnumerator dissableControls()
+    {
+        controlsEnable = false;
+        yield return new WaitForSeconds(1);
+        controlsEnable = true;
     }
 }
