@@ -21,7 +21,6 @@ public class CharacterMoveController : MonoBehaviour {
     [SerializeField]
     private float jumpPower;
     [SerializeField]
-    private Transform damageEffect;
     private bool controlsEnable;
 
     [HideInInspector]
