@@ -11,7 +11,6 @@ GameObject:
   - 212: {fileID: 21298280}
   - 58: {fileID: 5819224}
   - 58: {fileID: 5878194}
-  - 114: {fileID: 11470534}
   - 114: {fileID: 11403064}
   m_Layer: 0
   m_Name: Thorns
@@ -29,7 +28,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 56.74, y: -40.12, z: 0}
   m_LocalScale: {x: 3.23872, y: 3.23872, z: 3.23872}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,22 +72,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 30
   pushBackForce: 2000
---- !u!114 &11470534
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 119320956f53d914da76dd3a1237e07e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
-  health: 100
-  attackCoolDown: 1
-  pushBackForce: 100
-  isAlive: 1
 --- !u!212 &21298280
 SpriteRenderer:
   m_ObjectHideFlags: 1
