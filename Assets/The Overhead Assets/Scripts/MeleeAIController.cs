@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(CharacterMoveController))]
 public class MeleeAIController : MonoBehaviour
 {
     private Transform player;

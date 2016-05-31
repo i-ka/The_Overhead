@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+[RequireComponent(typeof(StatManager))]
 public class CharacterMoveController : MonoBehaviour {
 
     private bool facingRight=true;
@@ -16,11 +16,6 @@ public class CharacterMoveController : MonoBehaviour {
     private Transform m_atkTrigger;
     private AudioSource moveSound;
     private AudioSource attackSound;
-    [SerializeField]
-    private float maxSpeed;
-    [SerializeField]
-    private float jumpPower;
-    [SerializeField]
     private bool controlsEnable;
 
     [HideInInspector]
@@ -81,13 +76,13 @@ public class CharacterMoveController : MonoBehaviour {
             return;
         }
         
-        float moveSpeed = axis * maxSpeed;
+        float moveSpeed = axis * stats.maxSpeed;
         m_anim.SetFloat("Speed",Mathf.Abs(moveSpeed));
         m_rb.velocity = new Vector2(moveSpeed, m_rb.velocity.y);
 
         if(jump && grounded)
         {
-            m_rb.velocity = new Vector2(m_rb.velocity.x, jumpPower);
+            m_rb.velocity = new Vector2(m_rb.velocity.x, stats.jumpPower);
         }
 
         if (axis<0 && facingRight)Flip();
