@@ -22,6 +22,7 @@ public class CharacterMoveController : MonoBehaviour {
     public StatManager stats;
     public LayerMask ground;
     public string m_enemyTag="Enemy";
+	public bool grounded;
 
 	void Start () {
         stats = GetComponent<StatManager>();

@@ -45,7 +45,9 @@ public class MeleeAIController : MonoBehaviour
 
     void Patrol()
     {
-
+		if (!moveController.grounded) {
+			return;
+		}
         if (!rHavePlatform || !lHavePlatform)
         {
             direction *= -1;
