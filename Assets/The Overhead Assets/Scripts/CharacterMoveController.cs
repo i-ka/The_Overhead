@@ -4,7 +4,6 @@ using System.Collections;
 public class CharacterMoveController : MonoBehaviour {
 
     private bool facingRight=true;
-    private bool grounded;
     private float k_grounded_radius = 0.1f;
     public GameObject hitDamage;
     private Transform m_ground_check;
