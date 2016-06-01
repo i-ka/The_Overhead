@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 457674}
   - 212: {fileID: 21298280}
   - 58: {fileID: 5819224}
-  - 58: {fileID: 5878194}
   - 114: {fileID: 11403064}
   m_Layer: 0
   m_Name: Thorns
@@ -45,20 +44,6 @@ CircleCollider2D:
   m_Offset: {x: 0.05, y: -0.25}
   serializedVersion: 2
   m_Radius: 0.46
---- !u!58 &5878194
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136432}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.05, y: -0.25}
-  serializedVersion: 2
-  m_Radius: 0.46
 --- !u!114 &11403064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,7 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 30
-  pushBackForce: 2000
+  pushBackForce: 1000
 --- !u!212 &21298280
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -51,9 +51,6 @@ public class MeleeAIController : MonoBehaviour
         if (!rHavePlatform || !lHavePlatform)
         {
             direction *= -1;
-        } else if (!rHavePlatform && !lHavePlatform)
-        {
-            direction = 0;
         }
         moveController.Move(direction, false);
     }
@@ -70,17 +67,22 @@ public class MeleeAIController : MonoBehaviour
         {
             moveController.Attack(isAttack);
         }
-        else if (isGoing && isActivated && !isAttack)
+        else if (isGoing)
         {
             GoingTo();
         }
-        else if (isActivated && !isGoing && !isAttack)
+        else if (isActivated)
         {
             Patrol();
+        } else {
+            moveController.Move(0, false);
         }
     }
     void FixedUpdate()
     {
+        if(!isActivated) {
+            return;
+        }
         float checkRadius = 0.2f;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(lPlatformCheck.position, checkRadius, moveController.ground );
         lHavePlatform = colliders.Length > 0;
