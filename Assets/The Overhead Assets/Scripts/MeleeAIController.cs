@@ -45,7 +45,7 @@ public class MeleeAIController : MonoBehaviour
 
     void Patrol()
     {
-		if (!moveController.grounded) {
+		if (!moveController.m_grounded) {
 			return;
 		}
         if (!rHavePlatform || !lHavePlatform)
@@ -84,9 +84,9 @@ public class MeleeAIController : MonoBehaviour
             return;
         }
         float checkRadius = 0.2f;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(lPlatformCheck.position, checkRadius, moveController.ground );
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(lPlatformCheck.position, checkRadius, moveController.m_ground );
         lHavePlatform = colliders.Length > 0;
-        colliders = Physics2D.OverlapCircleAll(rPlatformCheck.position, checkRadius, moveController.ground);
+        colliders = Physics2D.OverlapCircleAll(rPlatformCheck.position, checkRadius, moveController.m_ground);
         rHavePlatform = colliders.Length > 0;
     }
 }
