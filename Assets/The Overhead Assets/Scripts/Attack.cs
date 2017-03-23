@@ -10,11 +10,11 @@ public class Attack : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(m_platformerMove.m_enemyTag))
+        if (other.CompareTag(m_platformerMove.EnemyTag))
         {
-            other.SendMessageUpwards("ApplyDamage", m_platformerMove.m_stats.damage);
+            other.SendMessageUpwards("ApplyDamage", m_platformerMove.Stats.damage);
             Vector2 pushVector = new Vector2(other.transform.position.x - transform.position.x, 2);
-            other.GetComponent<CharacterMoveController>().pushBack(pushVector.normalized * m_platformerMove.m_stats.pushBackForce);
+            other.GetComponent<CharacterMoveController>().pushBack(pushVector.normalized * m_platformerMove.Stats.pushBackForce);
         }
     }
 }

@@ -4,12 +4,19 @@ using System.Collections;
 public class CharacterMoveController : MonoBehaviour {
 
     public GameObject hitDamage;
-    [HideInInspector]
-    public StatManager m_stats;
-    public LayerMask m_ground;
-    public string m_enemyTag = "Enemy";
-    public bool m_grounded;
+    
+    public StatManager Stats { get { return m_stats; } }
+    public LayerMask Ground { get { return m_ground; } }
+    public string EnemyTag { get { return m_enemyTag; } }
+    public bool Grounded { get { return m_grounded; } }
 
+    [SerializeField]
+    private bool m_grounded;
+    [SerializeField]
+    private string m_enemyTag = "Enemy";
+    [SerializeField]
+    private LayerMask m_ground;
+    private StatManager m_stats;
     private Transform m_ground_check;
     private Rigidbody2D m_rb;
     private Animator m_anim;

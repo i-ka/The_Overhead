@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
     void Update()
     {
         if (playerController != null) {
-            if (!playerController.m_stats.isAlive) {
+            if (!playerController.Stats.isAlive) {
                 deadMenu.gameObject.SetActive(true);
                 gamePaused = true;
             }
