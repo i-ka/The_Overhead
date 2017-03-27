@@ -21,7 +21,7 @@ public class CharacterMoveController : MonoBehaviour {
     private Rigidbody2D m_rb;
     private Animator m_anim;
     private bool m_attacking = false;
-    private float m_attackTime = 0.1f;
+    private float m_attackTime = 0.01f;
     private Transform m_atkTrigger;
     private AudioSource m_moveSound;
     private AudioSource m_attackSound;
@@ -31,8 +31,6 @@ public class CharacterMoveController : MonoBehaviour {
 
 	void Start () {
         m_stats = GetComponent<StatManager>();
-        m_atkTrigger = transform.FindChild("AttackTrigger");
-        m_atkTrigger.gameObject.SetActive(false);
         m_rb = GetComponent<Rigidbody2D>();
         m_anim = GetComponent<Animator>();
         m_ground_check = transform.Find("GroundCheck");
@@ -40,6 +38,7 @@ public class CharacterMoveController : MonoBehaviour {
         m_moveSound = allSources[0];
         m_attackSound = allSources[1];
         m_controlsEnable = true;
+        SetupAttackTrigger();
     }
 
     public void Attack(bool atk)
@@ -105,18 +104,39 @@ public class CharacterMoveController : MonoBehaviour {
         }
     }
 
-    public void ApplyDamage(int damage)
+    public void ApplyDamage(AttackMessage message)
     {
-        m_stats.takeDamage(damage);
+        m_stats.takeDamage(message.Damage);
+        PushBack(message.PushBackForce);
         Instantiate(hitDamage, transform.position, transform.rotation);
     }
 
-    public void pushBack(Vector2 force)
+    public void PushBack(Vector2 force)
     {
         StartCoroutine("dissableControls");
         m_rb.velocity = new Vector2(0, 0);
         m_rb.AddForce(force);
     }
+
+    private void SetupAttackTrigger()
+    {
+        m_atkTrigger = transform.FindChild("AttackTrigger");
+        if (m_atkTrigger == null)
+        {
+            return;
+        }
+        m_atkTrigger.gameObject.SetActive(false);
+        var trigger = m_atkTrigger.GetComponent<AttackTrigger>();
+        if (trigger == null)
+        {
+            Debug.LogWarning("Trigger is not attack trigger!");
+            return;
+        }
+        trigger.Damage = m_stats.damage;
+        trigger.PushBackForce = m_stats.pushBackForce;
+        trigger.AffectedTags.Add(EnemyTag);
+    }
+
     IEnumerator dissableControls()
     {
         m_controlsEnable = false;

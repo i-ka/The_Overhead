@@ -8,22 +8,20 @@ public class ThornsDamage : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        var trigger = GetComponent<AttackTrigger>();
+        if (trigger == null)
+        {
+            Debug.LogWarning("Trigger is not attack trigger!");
+            return;
+        }
+        trigger.Damage = damage;
+        trigger.PushBackForce = pushBackForce;
+        trigger.AffectedTags.Add("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
 
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.SendMessageUpwards("ApplyDamage", damage);
-            Vector2 pushVector = new Vector2(other.transform.position.x - transform.position.x, 20);
-            other.GetComponent<CharacterMoveController>().pushBack(pushVector.normalized * pushBackForce);
-        }
     }
 }

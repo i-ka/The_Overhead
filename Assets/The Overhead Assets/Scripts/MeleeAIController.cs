@@ -39,7 +39,7 @@ public class MeleeAIController : MonoBehaviour
             isActivated = sqrLen <= 1000;
             isGoing = sqrLen <= 100;
             isAttack = sqrLen <= 17;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(1.0f);
         }
     }
 
